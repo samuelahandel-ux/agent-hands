@@ -1,0 +1,24 @@
+# AgentHands Dependencies
+
+# Web Framework
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+python-multipart>=0.0.6
+
+# Database
+aiosqlite>=0.19.0
+
+# HTTP Client
+httpx>=0.26.0
+
+# Data Validation
+pydantic>=2.5.0
+
+# Browser Automation (for screenshot/scrape capabilities)
+playwright>=1.41.0
+
+# Blockchain (for payment verification)
+web3>=6.14.0
+
+# Utilities
+python-dotenv>=1.0.0

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentHands - Real-World Tasks for AI Agents</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00d9ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .tagline { font-size: 1.5rem; color: #888; margin-bottom: 40px; }
+        .hero { text-align: center; margin-bottom: 60px; }
+        .problem {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        .problem h2 { color: #ff6b6b; margin-bottom: 15px; }
+        .problem ul { list-style: none; font-size: 1.1rem; }
+        .problem li { padding: 8px 0; }
+        .problem li::before { content: "❌ "; }
+        .solution {
+            background: rgba(0,255,136,0.1);
+            border: 1px solid rgba(0,255,136,0.3);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        .solution h2 { color: #00ff88; margin-bottom: 15px; }
+        .capabilities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .cap {
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+        .cap .icon { font-size: 2rem; margin-bottom: 10px; }
+        .cap .name { font-weight: bold; margin-bottom: 5px; }
+        .cap .price { color: #00d9ff; }
+        .cta {
+            text-align: center;
+            padding: 40px;
+            background: rgba(0,217,255,0.1);
+            border-radius: 12px;
+        }
+        .cta a {
+            display: inline-block;
+            background: linear-gradient(90deg, #00d9ff, #00ff88);
+            color: #1a1a2e;
+            padding: 15px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 10px;
+        }
+        .cta a:hover { transform: scale(1.05); }
+        code {
+            background: rgba(0,0,0,0.3);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .code-block {
+            background: #0d1117;
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        .code-block pre { color: #c9d1d9; font-size: 0.9rem; }
+        footer { text-align: center; margin-top: 60px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>🤖 AgentHands</h1>
+            <p class="tagline">Real-world task execution for AI agents</p>
+        </div>
+
+        <div class="problem">
+            <h2>The Problem</h2>
+            <p>AI agents are incredibly capable at reasoning, but they can't interact with the real world:</p>
+            <ul>
+                <li>Can't browse websites</li>
+                <li>Can't execute code</li>
+                <li>Can't take screenshots</li>
+                <li>Can't interact with blockchains</li>
+            </ul>
+        </div>
+
+        <div class="solution">
+            <h2>✅ We Give Them Hands</h2>
+            <p>AgentHands is an API where AI agents pay to execute real-world tasks. Browser automation, code execution, file handling, blockchain operations—all via simple API calls, paid in USDC.</p>
+        </div>
+
+        <h2 style="text-align: center; margin-bottom: 20px;">Capabilities</h2>
+        <div class="capabilities">
+            <div class="cap">
+                <div class="icon">📸</div>
+                <div class="name">Screenshot</div>
+                <div class="price">$0.01</div>
+            </div>
+            <div class="cap">
+                <div class="icon">🔍</div>
+                <div class="name">Web Scrape</div>
+                <div class="price">$0.05</div>
+            </div>
+            <div class="cap">
+                <div class="icon">🖱️</div>
+                <div class="name">Browser Automation</div>
+                <div class="price">$0.10</div>
+            </div>
+            <div class="cap">
+                <div class="icon">💻</div>
+                <div class="name">Code Execution</div>
+                <div class="price">$0.02</div>
+            </div>
+            <div class="cap">
+                <div class="icon">📁</div>
+                <div class="name">File Download</div>
+                <div class="price">$0.02</div>
+            </div>
+            <div class="cap">
+                <div class="icon">⛓️</div>
+                <div class="name">Blockchain</div>
+                <div class="price">$0.01</div>
+            </div>
+        </div>
+
+        <h2 style="text-align: center; margin-bottom: 20px;">Quick Start</h2>
+        <div class="code-block">
+<pre># 1. Create an account
+curl -X POST https://agenthands.3-145-143-237.nip.io/v1/accounts \
+  -H "Content-Type: application/json" \
+  -d '{"metadata": {"name": "My AI Agent"}}'
+
+# 2. Fund with USDC on Polygon (deposit address in response)
+
+# 3. Execute tasks
+curl -X POST https://agenthands.3-145-143-237.nip.io/v1/tasks \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -d '{"capability": "browser.screenshot", "input": {"url": "https://example.com"}}'</pre>
+        </div>
+
+        <div class="cta">
+            <h2>Start Building</h2>
+            <p style="margin: 15px 0;">Give your AI agent hands today.</p>
+            <a href="/docs">📚 API Docs</a>
+            <a href="https://github.com/samuelahandel-ux/agent-hands">⭐ GitHub</a>
+        </div>
+
+        <footer>
+            <p>Built for the agent economy. Pay with USDC on Polygon.</p>
+            <p style="margin-top: 10px;">API: <code>https://agenthands.3-145-143-237.nip.io</code></p>
+        </footer>
+    </div>
+</body>
+</html>

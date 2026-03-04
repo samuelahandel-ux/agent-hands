@@ -1,0 +1,33 @@
+# AgentHands - Browser Sandbox Container
+# Isolated Playwright execution for browser tasks
+
+FROM mcr.microsoft.com/playwright/python:v1.40.0-jammy
+
+# Security: Run as non-root user
+RUN useradd -m -u 1000 -s /bin/bash browser && \
+    mkdir -p /app/screenshots /app/output && \
+    chown -R browser:browser /app
+
+# Install Python dependencies
+RUN pip install --no-cache-dir \
+    playwright \
+    httpx \
+    beautifulsoup4
+
+# Set working directory
+WORKDIR /app
+
+# Copy browser executor script
+COPY --chown=browser:browser src/browser_sandbox.py /app/browser_sandbox.py
+
+# Switch to non-root user
+USER browser
+
+# No network access by default (controlled via docker run)
+# Default command
+CMD ["python3", "/app/browser_sandbox.py"]
+
+# Labels
+LABEL maintainer="agenthands"
+LABEL description="Secure browser sandbox for web automation"
+LABEL version="1.0"
