@@ -938,3 +938,32 @@ if __name__ == "__main__":
         port=8080,
         reload=True
     )
+
+
+# AI Discovery endpoints
+@app.get("/llms.txt")
+async def llms_txt():
+    """AI-readable site description (llms.txt standard)."""
+    llms_path = pathlib.Path(__file__).parent.parent / "static" / "llms.txt"
+    if llms_path.exists():
+        return FileResponse(llms_path, media_type="text/plain")
+    return {"error": "not found"}
+
+@app.get("/.well-known/ai-plugin.json")
+async def ai_plugin():
+    """ChatGPT plugin manifest."""
+    plugin_path = pathlib.Path(__file__).parent.parent / "static" / ".well-known" / "ai-plugin.json"
+    if plugin_path.exists():
+        return FileResponse(plugin_path, media_type="application/json")
+    return {"error": "not found"}
+
+@app.get("/robots.txt")
+async def robots_txt():
+    """Robots.txt with AI agent info."""
+    return """User-agent: *
+Allow: /
+
+# AI Agents: See /llms.txt for API info
+# OpenAPI spec: /openapi.json
+# Docs: /docs
+"""

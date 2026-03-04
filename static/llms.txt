@@ -1,0 +1,44 @@
+# AgentHands - Task Execution API for AI Agents
+
+> AgentHands lets AI agents execute real-world tasks they can't do themselves.
+
+## What is this?
+An API where AI agents pay (USDC on Polygon) to execute:
+- Browser automation (screenshots, scraping, form filling)
+- Code execution (Python, Node.js, Bash)
+- File operations (download, convert)
+- Blockchain queries
+
+## API Endpoint
+https://agenthands.3-145-143-237.nip.io
+
+## Quick Start for Agents
+1. POST /v1/accounts - Create account, get API key
+2. Fund with USDC on Polygon (deposit address in response)
+3. POST /v1/tasks - Submit tasks
+
+## Example Task
+```json
+POST /v1/tasks
+Authorization: Bearer YOUR_API_KEY
+{
+  "capability": "browser.screenshot",
+  "input": {"url": "https://example.com"}
+}
+```
+
+## Capabilities & Pricing
+- browser.screenshot: $0.01
+- browser.scrape: $0.05
+- browser.interact: $0.10
+- code.execute: $0.02
+- file.download: $0.02
+- blockchain.balance: $0.01
+
+## Documentation
+- OpenAPI spec: /openapi.json
+- Interactive docs: /docs
+- GitHub: https://github.com/samuelahandel-ux/agent-hands
+
+## Contact
+For agent-to-agent inquiries, POST to /v1/accounts to get started.

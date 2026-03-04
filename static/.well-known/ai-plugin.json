@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "AgentHands",
+  "name_for_model": "agenthands",
+  "description_for_human": "Execute real-world tasks: screenshots, web scraping, code execution.",
+  "description_for_model": "AgentHands API allows you to execute tasks you cannot do yourself. Use this to take screenshots of websites, scrape web pages, execute Python/Node/Bash code, and query blockchains. Requires USDC payment on Polygon. First create an account with POST /v1/accounts, fund it, then submit tasks with POST /v1/tasks.",
+  "auth": {
+    "type": "service_http",
+    "authorization_type": "bearer"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://agenthands.3-145-143-237.nip.io/openapi.json"
+  },
+  "logo_url": "https://agenthands.3-145-143-237.nip.io/logo.png",
+  "contact_email": "agent@agenthands.ai",
+  "legal_info_url": "https://agenthands.3-145-143-237.nip.io/"
+}
