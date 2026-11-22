@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "Baseline",
+    "slug": "baseline",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "scheme": "baseline",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#c8ddd6"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.baseline.oura",
+      "buildNumber": "1"
+    },
+    "android": {
+      "package": "com.baseline.oura",
+      "adaptiveIcon": {
+        "backgroundColor": "#c8ddd6",
+        "foregroundImage": "./assets/icon.png"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#c8ddd6",
+          "image": "./assets/splash-icon.png"
+        }
+      ]
+    ]
+  }
+}
