@@ -21,7 +21,7 @@ export function TrendChart({ days }: Props) {
     <div className="h-[320px] w-full">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={days} margin={{ top: 8, right: 8, left: -18, bottom: 0 }}>
-          <CartesianGrid stroke="rgba(26,36,33,0.08)" vertical={false} />
+          <CartesianGrid stroke="rgba(19,33,28,0.06)" vertical={false} />
           <XAxis
             dataKey="label"
             tickLine={false}
@@ -36,20 +36,16 @@ export function TrendChart({ days }: Props) {
             tick={{ fontSize: 12 }}
           />
           <Tooltip
-            contentStyle={{
-              background: "rgba(255,255,255,0.92)",
-              border: "1px solid rgba(26,36,33,0.12)",
-              borderRadius: 0,
-              fontSize: 13,
-            }}
+            contentStyle={{ fontSize: 13 }}
+            wrapperClassName="glass-tooltip"
           />
           <Legend wrapperStyle={{ fontSize: 13, paddingTop: 8 }} />
           <Line
             type="monotone"
             dataKey="readiness"
             name="Readiness"
-            stroke="#1f6f63"
-            strokeWidth={2.2}
+            stroke="#1a7a6a"
+            strokeWidth={2.4}
             dot={false}
             connectNulls
           />
@@ -57,7 +53,7 @@ export function TrendChart({ days }: Props) {
             type="monotone"
             dataKey="sleepScore"
             name="Sleep"
-            stroke="#b86b3c"
+            stroke="#c47a45"
             strokeWidth={2}
             dot={false}
             connectNulls
@@ -66,7 +62,7 @@ export function TrendChart({ days }: Props) {
             type="monotone"
             dataKey="activityScore"
             name="Activity"
-            stroke="#5c6b66"
+            stroke="#5a756c"
             strokeWidth={1.6}
             strokeDasharray="4 4"
             dot={false}

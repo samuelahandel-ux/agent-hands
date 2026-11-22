@@ -3,18 +3,22 @@
 @tailwind utilities;
 
 :root {
-  --ink: #1a2421;
-  --muted: #5c6b66;
-  --line: rgba(26, 36, 33, 0.12);
-  --panel: rgba(255, 255, 255, 0.55);
-  --accent: #1f6f63;
-  --accent-soft: #d7ebe6;
-  --warm: #b86b3c;
-  --watch: #9a4f3c;
-  --good: #2f7a4d;
-  --bg0: #e8f0ec;
-  --bg1: #f4efe6;
-  --bg2: #d9e7e8;
+  --ink: #13211c;
+  --ink-soft: rgba(19, 33, 28, 0.72);
+  --muted: rgba(19, 33, 28, 0.55);
+  --glass-fill: rgba(255, 255, 255, 0.34);
+  --glass-fill-strong: rgba(255, 255, 255, 0.48);
+  --glass-stroke: rgba(255, 255, 255, 0.62);
+  --glass-stroke-soft: rgba(255, 255, 255, 0.28);
+  --glass-shadow: 0 18px 50px rgba(40, 70, 60, 0.12), 0 2px 8px rgba(40, 70, 60, 0.06);
+  --accent: #1a7a6a;
+  --accent-glow: rgba(26, 122, 106, 0.35);
+  --warm: #c47a45;
+  --watch: #b45a42;
+  --good: #2d8a58;
+  --radius-lg: 28px;
+  --radius-md: 20px;
+  --radius-pill: 999px;
 }
 
 * {
@@ -29,15 +33,13 @@ body {
 body {
   margin: 0;
   color: var(--ink);
-  background:
-    radial-gradient(1200px 700px at 8% -10%, var(--bg2), transparent 55%),
-    radial-gradient(900px 600px at 100% 0%, #f0e4d4, transparent 50%),
-    linear-gradient(165deg, var(--bg0), var(--bg1) 48%, #eef3f1);
   font-family: var(--font-body), "Segoe UI", sans-serif;
+  background: #c8ddd6;
+  overflow-x: hidden;
 }
 
 ::selection {
-  background: var(--accent-soft);
+  background: rgba(26, 122, 106, 0.22);
   color: var(--ink);
 }
 
@@ -46,26 +48,196 @@ a {
 }
 
 .shell {
-  width: min(1120px, calc(100% - 2rem));
+  width: min(1120px, calc(100% - 1.5rem));
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .brand {
   font-family: var(--font-display), sans-serif;
-  letter-spacing: -0.04em;
-}
-
-.panel {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  backdrop-filter: blur(10px);
+  letter-spacing: -0.045em;
 }
 
 .metric-value {
   font-family: var(--font-display), sans-serif;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.055em;
   font-weight: 600;
   line-height: 0.95;
+}
+
+/* —— Liquid Glass material —— */
+.glass {
+  position: relative;
+  background:
+    linear-gradient(
+      155deg,
+      rgba(255, 255, 255, 0.55) 0%,
+      rgba(255, 255, 255, 0.18) 42%,
+      rgba(255, 255, 255, 0.28) 100%
+    );
+  border: 1px solid var(--glass-stroke-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(28px) saturate(165%);
+  -webkit-backdrop-filter: blur(28px) saturate(165%);
+  overflow: hidden;
+}
+
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.08) 18%,
+    transparent 42%
+  );
+  opacity: 0.9;
+}
+
+.glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75), inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.glass-strong {
+  background:
+    linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.62) 0%,
+      rgba(255, 255, 255, 0.26) 45%,
+      rgba(240, 250, 246, 0.34) 100%
+    );
+  backdrop-filter: blur(36px) saturate(180%);
+  -webkit-backdrop-filter: blur(36px) saturate(180%);
+}
+
+.glass-pad {
+  padding: 1.25rem 1.35rem;
+}
+
+@media (min-width: 768px) {
+  .glass-pad {
+    padding: 1.5rem 1.65rem;
+  }
+}
+
+.glass-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--glass-stroke-soft);
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 4px 16px rgba(40, 70, 60, 0.06);
+  transition:
+    background 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.25s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
+}
+
+.glass-pill:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.glass-pill.is-active {
+  background: linear-gradient(160deg, rgba(26, 122, 106, 0.92), rgba(22, 96, 84, 0.88));
+  color: #f4fffb;
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow:
+    0 10px 28px var(--accent-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.glass-cta {
+  background: linear-gradient(160deg, rgba(26, 122, 106, 0.95), rgba(18, 90, 78, 0.9));
+  color: #f4fffb;
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 12px 32px var(--accent-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.glass-cta:hover {
+  filter: brightness(1.05);
+}
+
+/* —— Scene / liquid backdrop —— */
+.liquid-scene {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+}
+
+.liquid-scene__glow {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 80% 55% at 12% 8%, rgba(180, 230, 210, 0.95), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 88% 12%, rgba(245, 220, 190, 0.75), transparent 50%),
+    radial-gradient(ellipse 60% 45% at 70% 78%, rgba(160, 210, 220, 0.7), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 18% 85%, rgba(210, 235, 200, 0.65), transparent 50%),
+    linear-gradient(165deg, #d5e8e1 0%, #e8ebe4 45%, #cfe0dc 100%);
+}
+
+.liquid-scene__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.7;
+  animation: orb-float 18s ease-in-out infinite alternate;
+}
+
+.liquid-scene__orb--a {
+  width: min(52vw, 420px);
+  height: min(52vw, 420px);
+  top: -8%;
+  left: -6%;
+  background: radial-gradient(circle, rgba(120, 210, 190, 0.85), transparent 68%);
+}
+
+.liquid-scene__orb--b {
+  width: min(46vw, 380px);
+  height: min(46vw, 380px);
+  top: 12%;
+  right: -10%;
+  background: radial-gradient(circle, rgba(240, 200, 160, 0.7), transparent 68%);
+  animation-delay: -6s;
+}
+
+.liquid-scene__orb--c {
+  width: min(58vw, 480px);
+  height: min(58vw, 480px);
+  bottom: 5%;
+  left: 28%;
+  background: radial-gradient(circle, rgba(140, 190, 220, 0.55), transparent 68%);
+  animation-delay: -11s;
+}
+
+.liquid-caustic {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.35), transparent 25%),
+    radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.22), transparent 30%);
+  mix-blend-mode: soft-light;
+  animation: caustic 22s ease-in-out infinite alternate;
 }
 
 .recharts-cartesian-axis-tick text,
@@ -73,18 +245,45 @@ a {
   fill: var(--muted) !important;
 }
 
+.glass-tooltip {
+  background: rgba(255, 255, 255, 0.55) !important;
+  border: 1px solid rgba(255, 255, 255, 0.55) !important;
+  border-radius: 14px !important;
+  backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: 0 12px 30px rgba(40, 70, 60, 0.12) !important;
+  color: var(--ink) !important;
+}
+
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(18px) scale(0.985);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
-@keyframes drift {
+@keyframes orb-float {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(4%, 6%, 0) scale(1.08);
+  }
+}
+
+@keyframes caustic {
+  from {
+    transform: translate3d(-2%, 0, 0) rotate(0deg);
+  }
+  to {
+    transform: translate3d(3%, 2%, 0) rotate(8deg);
+  }
+}
+
+@keyframes shimmer {
   from {
     background-position: 0% 50%;
   }
@@ -94,26 +293,40 @@ a {
 }
 
 .rise {
-  animation: rise 0.7s ease both;
+  animation: rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .rise-delay-1 {
-  animation-delay: 0.08s;
+  animation-delay: 0.07s;
 }
 .rise-delay-2 {
-  animation-delay: 0.16s;
+  animation-delay: 0.14s;
 }
 .rise-delay-3 {
-  animation-delay: 0.24s;
+  animation-delay: 0.21s;
 }
 .rise-delay-4 {
-  animation-delay: 0.32s;
+  animation-delay: 0.28s;
 }
 
-.ambient {
-  background-image:
-    linear-gradient(120deg, transparent 40%, rgba(31, 111, 99, 0.08), transparent 60%),
-    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.35), transparent 35%);
-  background-size: 200% 200%, 100% 100%;
-  animation: drift 18s ease-in-out infinite alternate;
+.brand-sheen {
+  background: linear-gradient(
+    105deg,
+    var(--ink) 20%,
+    rgba(26, 122, 106, 0.85) 45%,
+    var(--ink) 70%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 10s ease-in-out infinite alternate;
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass,
+  .glass-strong,
+  .glass-pill {
+    background: rgba(245, 250, 247, 0.92);
+  }
 }
