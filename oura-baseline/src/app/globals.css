@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #1a2421;
+  --muted: #5c6b66;
+  --line: rgba(26, 36, 33, 0.12);
+  --panel: rgba(255, 255, 255, 0.55);
+  --accent: #1f6f63;
+  --accent-soft: #d7ebe6;
+  --warm: #b86b3c;
+  --watch: #9a4f3c;
+  --good: #2f7a4d;
+  --bg0: #e8f0ec;
+  --bg1: #f4efe6;
+  --bg2: #d9e7e8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 700px at 8% -10%, var(--bg2), transparent 55%),
+    radial-gradient(900px 600px at 100% 0%, #f0e4d4, transparent 50%),
+    linear-gradient(165deg, var(--bg0), var(--bg1) 48%, #eef3f1);
+  font-family: var(--font-body), "Segoe UI", sans-serif;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+a {
+  color: inherit;
+}
+
+.shell {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.brand {
+  font-family: var(--font-display), sans-serif;
+  letter-spacing: -0.04em;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+}
+
+.metric-value {
+  font-family: var(--font-display), sans-serif;
+  letter-spacing: -0.05em;
+  font-weight: 600;
+  line-height: 0.95;
+}
+
+.recharts-cartesian-axis-tick text,
+.recharts-legend-item-text {
+  fill: var(--muted) !important;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drift {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
+}
+
+.rise {
+  animation: rise 0.7s ease both;
+}
+
+.rise-delay-1 {
+  animation-delay: 0.08s;
+}
+.rise-delay-2 {
+  animation-delay: 0.16s;
+}
+.rise-delay-3 {
+  animation-delay: 0.24s;
+}
+.rise-delay-4 {
+  animation-delay: 0.32s;
+}
+
+.ambient {
+  background-image:
+    linear-gradient(120deg, transparent 40%, rgba(31, 111, 99, 0.08), transparent 60%),
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.35), transparent 35%);
+  background-size: 200% 200%, 100% 100%;
+  animation: drift 18s ease-in-out infinite alternate;
+}
